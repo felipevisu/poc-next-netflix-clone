@@ -34,7 +34,7 @@ const NavLink = ({
 
 export const Navbar = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" sx={{ background: "none", boxShadow: "none" }}>
       <Container>
         <Toolbar disableGutters>
           <Logo />

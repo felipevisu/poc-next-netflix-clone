@@ -1,3 +1,9 @@
+import { FeaturedContent } from "@/components/FeaturedContent";
+
 export default function Home() {
-  return <div>Netflix</div>;
+  return (
+    <div>
+      <FeaturedContent />
+    </div>
+  );
 }
