@@ -2,6 +2,7 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoIcon from "@mui/icons-material/Info";
 import { Box, Button, styled, Typography } from "@mui/material";
+import Image from "next/image";
 
 const Background = styled(Box)({
   backgroundColor: "red",
@@ -38,6 +39,7 @@ const Content = styled(Box)(({ theme }) => ({
   top: "50%",
   transform: "translateY(-50%)",
   padding: theme.spacing(4, 8),
+  width: "45%",
   maxWidth: "600px",
   display: "flex",
   flexDirection: "column",
@@ -48,10 +50,18 @@ export const FeaturedContent = () => {
   return (
     <Background>
       <Content>
+        <Image
+          src="/main-movie-logo.webp"
+          alt="Não! Não olhe!"
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "75%", height: "auto" }}
+        />
         <Typography sx={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}>
-          Em busca de uma vida melhor, a família Dutton empreende uma perigosa
-          jornada pelas Grandes Planícies em direção às terras que um dia serão
-          o Rancho Yellowstone.
+          O vencedor do Oscar® Jordan Peele (Nós, Corra!) traz a história de
+          irmãos que cuidam de cavalos e enfrentam a perigosa ameaça de OVNIs
+          vindos do céu.
         </Typography>
         <Box sx={{ display: "flex", gap: "16px" }}>
           <Button startIcon={<PlayArrowIcon />} variant="contained">

@@ -4,9 +4,17 @@ import { Box, styled } from "@mui/material";
 
 const CarouselItem = styled(Box)({
   background: "#ddd",
-  minWidth: "320px",
-  height: "180px",
+  minWidth: "calc(20% - 8px)",
+  margin: "0 4px",
   flex: 1,
+  position: "relative",
+  borderRadius: "4px",
+  "&:after": {
+    content: '""',
+    width: "100%",
+    display: "block",
+    paddingBottom: "66%",
+  },
 });
 
 export const Carousel = () => {
@@ -14,7 +22,6 @@ export const Carousel = () => {
     <Box
       sx={{
         display: "flex",
-        gap: "8px",
         flexWrap: "nowrap",
       }}
     >
