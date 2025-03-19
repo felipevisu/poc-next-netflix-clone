@@ -1,10 +1,17 @@
 "use client";
 
+import { shuffleArray } from "@/utils/shuffle";
 import { Box, styled } from "@mui/material";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
-const CarouselItem = styled(Box)({
-  background: "#ddd",
+interface CarouselItemProps {
+  index: number;
+}
+
+const CarouselItem = styled(Box)<CarouselItemProps>(({ index }) => ({
+  background: `url(/posters/poster-${index}.jpg)`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
   minWidth: "calc(20% - 8px)",
   margin: "0 4px",
   flex: 1,
@@ -14,9 +21,9 @@ const CarouselItem = styled(Box)({
     content: '""',
     width: "100%",
     display: "block",
-    paddingBottom: "66%",
+    paddingBottom: "150%",
   },
-});
+}));
 
 const CarouselContainer = styled(Box)({
   display: "flex",
@@ -114,14 +121,16 @@ export const Carousel = ({ items }: CarouselProps) => {
     }
   };
 
+  const movies = useMemo(() => shuffleArray(items), [items]);
+
   const totalDots = Math.ceil(items.length / 5);
 
   return (
     <Box sx={{ position: "relative" }}>
       <Dots total={totalDots} active={active} />
       <CarouselContainer ref={carouselRef}>
-        {items.map((_, index) => (
-          <CarouselItem key={index + 1} />
+        {movies.map((item) => (
+          <CarouselItem key={item} index={item} />
         ))}
       </CarouselContainer>
       <ArrowButton

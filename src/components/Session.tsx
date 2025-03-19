@@ -7,7 +7,7 @@ export const Session = ({ title }: { title: string }) => {
       <Box py={2} px={6}>
         <Typography>{title}</Typography>
       </Box>
-      <Carousel items={Array.from({ length: 22 }, (_, i) => i + 1)} />
+      <Carousel items={Array.from({ length: 12 }, (_, i) => i + 1)} />
     </Box>
   );
 };
