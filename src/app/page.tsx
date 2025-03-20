@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { searchMovies } from "@/api/searchMovies";
 import { FeaturedContent } from "@/components/FeaturedContent";
@@ -8,7 +8,7 @@ import { Session } from "@/components/Session";
 import { MovieList, PostersDict } from "@/types";
 import { SearchBar } from "@/components/SearchBar";
 
-export default function Home() {
+function HomePage() {
   const [movies, setMovies] = useState<MovieList>([]);
   const [posters, setPosters] = useState<PostersDict>({});
   const searchParams = useSearchParams();
@@ -41,3 +41,15 @@ export default function Home() {
     </div>
   );
 }
+
+const Home: React.FC = () => {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <HomePage />
+      </Suspense>
+    </div>
+  );
+};
+
+export default Home;
