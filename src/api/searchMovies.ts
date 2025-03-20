@@ -28,6 +28,7 @@ const initialMovies: MovieList = [
 ];
 
 export const searchMovies = async (
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   query?: string
 ): Promise<{
   posters: PostersDict;
