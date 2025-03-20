@@ -1,15 +1,15 @@
 "use client";
 
-import { shuffleArray } from "@/utils/shuffle";
+import { Movie, PostersDict } from "@/types";
 import { Box, styled } from "@mui/material";
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 interface CarouselItemProps {
-  index: number;
+  poster: string;
 }
 
-const CarouselItem = styled(Box)<CarouselItemProps>(({ index }) => ({
-  background: `url(/posters/poster-${index}.jpg)`,
+const CarouselItem = styled(Box)<CarouselItemProps>(({ poster }) => ({
+  background: `url(${poster})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   minWidth: "calc(20% - 8px)",
@@ -102,10 +102,11 @@ const Dots = ({ total, active }: DotsProps) => {
 };
 
 interface CarouselProps {
-  items: number[];
+  movies: Movie[];
+  posters: PostersDict;
 }
 
-export const Carousel = ({ items }: CarouselProps) => {
+export const Carousel = ({ movies, posters }: CarouselProps) => {
   const [active, setActive] = useState<number>(0);
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
@@ -121,16 +122,14 @@ export const Carousel = ({ items }: CarouselProps) => {
     }
   };
 
-  const movies = useMemo(() => shuffleArray(items), [items]);
-
-  const totalDots = Math.ceil(items.length / 5);
+  const totalDots = Math.ceil(movies.length / 5);
 
   return (
     <Box sx={{ position: "relative" }}>
       <Dots total={totalDots} active={active} />
       <CarouselContainer ref={carouselRef}>
         {movies.map((item) => (
-          <CarouselItem key={item} index={item} />
+          <CarouselItem key={item.tmdbId} poster={posters[item.tmdbId]} />
         ))}
       </CarouselContainer>
       <ArrowButton

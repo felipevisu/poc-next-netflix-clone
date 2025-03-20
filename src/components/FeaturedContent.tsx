@@ -8,7 +8,7 @@ const Background = styled(Box)({
   backgroundColor: "red",
   backgroundImage: "url('/main-movie-cover.webp')",
   width: "100%",
-  height: "52vw",
+  height: "42vw",
   backgroundSize: "cover",
   backgroundPosition: "center",
   position: "relative",
